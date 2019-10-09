@@ -1,6 +1,6 @@
 <?php
 session_start();
-require ('dbconnect.php');
+require('dbconnect.php');
 ?>
 
 <!doctype html>
@@ -10,12 +10,12 @@ require ('dbconnect.php');
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
+    <title>header</title>
 </head>
 <body>
-<h1>ここはログイン画面です</h1>
-
-
+<p>
+こんにちは、   <?php echo $name ?>   さん！
+</p>
 
 </body>
 </html>

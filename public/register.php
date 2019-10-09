@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html lang="jp">
 <head>
@@ -10,17 +14,22 @@
 
 <body>
 
-<h1>ここはユーザー登録画面</h1>
+<h1>ここはユーザー登録画面です</h1>
 
-<form method="post" action="register.php">
+<form method="post" action="list.php">
     <label>
-        名前<input type="text" name="user_name" value="<?php echo $name?>" required><br>
-        メールアドレス<input type="text" name="email" value="<?php echo $email?>" required><br>
-        パスワード<input type="text" name="password" value="<?php echo $password?>" required><br>
+        名前<input type="text" name="user_name" value="<?php echo $name?>" ><br>
+        メールアドレス<input type="text" name="email" value="<?php echo $email?>" ><br>
+        パスワード<input type="text" name="password" value="<?php echo $password?>"><br>
     </label>
     <input type="submit" name="submit_name" value="実行">
 </form>
-
+<br>
+<ul>
+    <?php $errors = array();
+    foreach($errors as $message)
+    {echo $message;}?>
+</ul>
 </body>
 </html>
 
@@ -28,21 +37,8 @@
 
 <?php
 require ('dbconnect.php');
-
-//バリデーションは最初は直がきで。
-$name = $_POST['user_name'];
-$email = $_POST['email'];
-$password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+$name = strip_tags($_POST['user_name']);
+$email = strip_tags($_POST['email']);
+$password = password_hash(strip_tags($_POST['password']), PASSWORD_BCRYPT);
 $timestamp = date('Y-m-d H:i:s');
-
-
-
-$st = $db->prepare("INSERT INTO users(user_name,email,password,insert_date) VALUES(?,?,?,?)");
-$st->execute(array(
-    $name,
-    $email,
-    $password,
-    $timestamp
-));
-
 ?>
