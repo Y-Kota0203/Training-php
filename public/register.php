@@ -10,7 +10,7 @@
 
 <body>
 
-<h1>ここはユーザー登録画面</h1>
+<h1>ここはユーザー登録画面です</h1>
 
 <form method="post" action="register.php">
     <label>
